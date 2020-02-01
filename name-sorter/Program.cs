@@ -12,27 +12,16 @@ namespace NameSorting
         {
             List<string> unsortedNames = new List<string>();
             List<string> sortedNames = new List<string>();
-
-            string readline;
-            do
+            unsortedNames = RDFile.ReadAllLine(args[0]);
+            if (unsortedNames.Count > 0)
             {
-                readline = Console.ReadLine();
-                if (readline != "exit")
+                sortedNames = RDString.SortByLastWord(unsortedNames, ' ');
+                foreach (string sortedName in sortedNames)
                 {
-                    unsortedNames = RDFile.ReadAllLine(readline);
-                    if (unsortedNames.Count > 0)
-                    {
-                        sortedNames = RDString.SortByLastWord(unsortedNames, ' ');
-                        foreach (string sortedName in sortedNames)
-                        {
-                            Console.WriteLine(sortedName);
-                        }
-                    }
+                    Console.WriteLine(sortedName);
                 }
-
-                Console.WriteLine();
-            } while (readline.ToLower() != "exit");
-            
+                RDFile.WriteToFile(sortedNames, "sorted-names-list.txt");
+            }
         }
     }
 }
