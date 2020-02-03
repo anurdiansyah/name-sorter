@@ -10,12 +10,10 @@ namespace NameSorting
     {
         static void Main(string[] args)
         {
-            List<string> unsortedNames = new List<string>();
-            List<string> sortedNames = new List<string>();
-            unsortedNames = RDFile.ReadAllLine(args[0]);
+            List<string> unsortedNames = RDFile.ReadAllLine(args[0]);
             if (unsortedNames.Count > 0)
             {
-                sortedNames = RDString.SortByLastWord(unsortedNames, ' ');
+                List<string> sortedNames = RDString.SortByLastWord(unsortedNames, ' ');
                 foreach (string sortedName in sortedNames)
                 {
                     Console.WriteLine(sortedName);
